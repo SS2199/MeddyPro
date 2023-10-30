@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/tabs/tab1" color="secondary"></ion-back-button>
+    <ion-title>General Physician</ion-title>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-searchbar type="text" class="form-control" placeholder="Search..."
+                                              [(ngModel)]="filterTerm" ></ion-searchbar>
+
+    <ion-list>
+    <ion-card>
+    <ion-item *ngFor="let meddydoc of MeddyDocs  | filter: filterTerm">
+      <ion-card-header id="img"><img [src]="meddydoc.imgurl || '' "></ion-card-header>
+      <ion-label>
+        <h2>{{meddydoc.name}}</h2>
+        <h3>{{meddydoc.designation}}</h3>
+        <h3>{{meddydoc.hname}}</h3>
+        <h3>{{meddydoc.city}}</h3>
+        <h3>{{meddydoc.contact}}</h3>
+        <h3 id="fee">{{meddydoc.fee}}</h3>
+      </ion-label>
+
+      <ion-button type="submit" color="secondary" expand="block"
+                                  [routerLink]="['/view/'+meddydoc._id]">Book Now</ion-button>
+
+
+    </ion-item>
+  </ion-card>
+    </ion-list>
+</ion-content>

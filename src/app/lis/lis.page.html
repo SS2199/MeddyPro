@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons>
+    <ion-back-button defaultHref="/tabs/tab2" style=color:white></ion-back-button>
+    <ion-title>VetDoctors List</ion-title>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar type="text" class="form-control" placeholder="Search..."
+                                              [(ngModel)]="filterTerm" ></ion-searchbar>
+
+
+  <ion-list>
+    <ion-item *ngFor="let vetdoc of Vetdocs  | filter: filterTerm">
+      <ion-label>
+        <h2>{{vetdoc.year}}</h2>
+        <h3>{{vetdoc.name}}</h3>
+        <h3>{{vetdoc.dob}}</h3>
+        <h3>{{vetdoc.address}}</h3>
+        <h3>{{vetdoc.regno}}</h3>
+        <h3>{{vetdoc.qualification}}</h3>
+        <h3>{{vetdoc.fees}}</h3>
+        </ion-label>
+
+        <ion-button type="submit" color="secondary" expand="block"
+                                      [routerLink]="['/view1/'+vetdoc._id]">Book Now</ion-button>
+
+          </ion-item>
+  </ion-list>
+
+</ion-content>
