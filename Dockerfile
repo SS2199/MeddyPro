@@ -1,4 +1,3 @@
-
 # Use an official Node.js runtime as the base image
 FROM node:14
 
@@ -10,6 +9,9 @@ COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
+
+# Install the Ionic CLI globally
+RUN npm install -g ionic
 
 # Copy the rest of the application code to the working directory
 COPY . .
