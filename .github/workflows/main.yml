@@ -1,1 +1,38 @@
+name: CI/CD for Ionic App
 
+on:
+  push:
+    branches:
+      - main # You can change this to your main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Build and publish Docker image
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+      run: |
+        docker build -t my-ionic-app .
+        echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+        docker tag my-ionic-app:latest your-dockerhub-username/my-ionic-app:latest
+        docker push your-dockerhub-username/my-ionic-app:latest
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4
+      with:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: www
+
+# Add more steps for additional deployment actions if needed
