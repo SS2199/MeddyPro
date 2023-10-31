@@ -211,10 +211,7 @@ const routes: Routes = [
     path: 'babyproducts',
     loadChildren: () => import('./babyproducts/babyproducts.module').then( m => m.BabyproductsPageModule)
   },
-  {
-    path: 'trail',
-    loadChildren: () => import('./trail/trail.module').then( m => m.TrailPageModule)
-  },
+  
   {
     path: 'doctor-list',
     loadChildren: () => import('./doctor-list/doctor-list.module').then( m => m.DoctorListPageModule)
@@ -341,7 +338,8 @@ const routes: Routes = [
   {
     path: 'vetpatientform',
     loadChildren: () => import('./vetpatientform/vetpatientform.module').then( m => m.VetpatientformPageModule)
-  },  {
+  },
+  {
     path: 'body-cartview',
     loadChildren: () => import('./body-cartview/body-cartview.module').then( m => m.BodyCartviewPageModule)
   }
